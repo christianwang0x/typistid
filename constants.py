@@ -104,7 +104,8 @@ KEYS = {"8": 56,
         "dash": 189,
         "1": 49,
         "decimal point": 110,
-        "equal sign": 187}
+        "equal sign": 187,
+        "space": 32}
 
 IKEYS = invert_dict(KEYS)
 
