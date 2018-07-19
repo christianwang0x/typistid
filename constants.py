@@ -1,3 +1,5 @@
+from misc import *
+
 DOWN = 0
 UP = 1
 TIME_UNITS = 0.001
@@ -103,3 +105,7 @@ KEYS = {"8": 56,
         "1": 49,
         "decimal point": 110,
         "equal sign": 187}
+
+IKEYS = invert_dict(KEYS)
+
+KEYPRESS_TEMPLATE = "code: {code}\nkey: {key}\nstart_index: {start_index}\nstop_index: {stop_index}\nstart_time: {start_time}\nstop_time: {stop_time}\nchildren: {children}\nstep_children: {step_children}\nparents: {parents}\nstep_parents: {step_parents}\n"
