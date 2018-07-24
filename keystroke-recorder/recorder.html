@@ -1,0 +1,17 @@
+<html>
+ <head>
+  <script src="recorder.js"></script>
+  <link rel="stylesheet" type="text/css" href="recorder.css">
+ </head>
+ <body>
+  <h5>Enter text here</h5>
+  <textarea class="inputbox" onkeydown="keyPressEvent(event, 0)" onkeyup="keyPressEvent(event, 1)"></textarea>
+  <button type="button" onclick="printKeyEvents()" >Enter</button>
+  <h5>Data</h5>
+  <div class="outputbox">
+   <code>
+    <section id="output"></section>
+   </code>
+  </div>
+ </body>
+</html>
