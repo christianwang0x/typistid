@@ -1,2 +1,13 @@
 # typistid
 Program that attempts to fingerprint user's typing habits
+
+To record keystroke data:
+  1. Open keystroke-recorder/recorder.html in your browser
+  2. Type something into the input box and click "Enter" when finished.
+  3. Copy the printed JSON data into a file
+  
+To visualize data:
+  python profiler.py visualize my_keystroke_data.json
+  
+To compare keystrokes to two existing data files:
+  python profiler.py compare data1.json data2.json new_data.json
