@@ -10,20 +10,26 @@ from parser import *
 # sequences of key-presses. E.g. Two users type the word "cat".
 # Currently too slow for large data sets
 def get_keypress_intersects(key_presses1, key_presses2, min_intersect_len=2):
+    len1 = len(key_presses1)
+    len2 = len(key_presses2)
+    counter = 0
     intersects = []
-    smaller_kp, larger_kp = sorted([key_presses1, key_presses2], key=len)
-    min_slices = get_slices(min_intersect_len, len(smaller_kp), len(smaller_kp))
-    max_slices = get_slices(min_intersect_len, len(smaller_kp), len(larger_kp))
-    for min_slice in min_slices:
-        for max_slice in max_slices:
-            slice1 = smaller_kp[min_slice]
-            slice2 = larger_kp[max_slice]
-            if slice1 == slice2:
-                for kp in slice1:
-                    if kp.code == 32:
-                        break
-                else:
-                    intersects.append((slice1, slice2))
+    for start1 in range(len1 - 1):
+        for start2 in range(len2 - 1):
+            if key_presses1[start1] == key_presses2[start2]:
+                next1 = start1 + 1
+                next2 = start2 + 1
+                while ((next1 < len1 and next2 < len2) and
+                        key_presses1[next1] == key_presses2[next2]):
+                    slice1 = slice(start1, next1, 1)
+                    slice2 = slice(start2, next2, 1)
+                    key_slice1 = key_presses1[slice1]
+                    key_slice2 = key_presses2[slice2]
+                    intersects.append((key_slice1, key_slice2))
+                    next1 += 1
+                    next2 += 1
+                    counter += 1
+    print(counter)
     return intersects
 
 
@@ -160,7 +166,7 @@ def run():
         with open(sys.argv[4]) as fp:
             dataset3 = json.load(fp)
         compare(dataset1, dataset2, dataset3)
-        exit(0)
+        # exit(0)
     elif command == "visualize":
         with open(sys.argv[2]) as fp:
             dataset = json.load(fp)
@@ -173,5 +179,7 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    import timeit
+    print(timeit.repeat("run()", setup="from __main__ import run", number=1))
+    #run()
 
