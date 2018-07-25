@@ -12,7 +12,6 @@ from parser import *
 def get_keypress_intersects(key_presses1, key_presses2, min_intersect_len=2):
     len1 = len(key_presses1)
     len2 = len(key_presses2)
-    counter = 0
     intersects = []
     for start1 in range(len1 - 1):
         for start2 in range(len2 - 1):
@@ -28,8 +27,6 @@ def get_keypress_intersects(key_presses1, key_presses2, min_intersect_len=2):
                     intersects.append((key_slice1, key_slice2))
                     next1 += 1
                     next2 += 1
-                    counter += 1
-    print(counter)
     return intersects
 
 
@@ -146,10 +143,14 @@ def compare(dataset1, dataset2, dataset3):
     intersects2 = get_keypress_intersects(akp2, akp3)
     average1 = get_average_area(intersects1)
     average2 = get_average_area(intersects2)
-    a1 = sys.argv[1]
-    a2 = sys.argv[2]
-    a3 = sys.argv[3]
-    print(AUTHOR_TEMPLATE.format(a3, a1 if average1 > average2 else a2))
+    a1 = sys.argv[2]
+    a2 = sys.argv[3]
+    a3 = sys.argv[4]
+    p1 = a1 if average1 > average2 else a2
+    p2 = average1 if p1 == a1 else average2
+    p3 = a2 if average1 > average2 else a1
+    p4 = average2 if p1 == a1 else average1
+    return RESULT_TEMPLATE.format(a3, p1, p2, p3, p4)
 
 
 def run():
@@ -165,21 +166,21 @@ def run():
             dataset2 = json.load(fp)
         with open(sys.argv[4]) as fp:
             dataset3 = json.load(fp)
-        compare(dataset1, dataset2, dataset3)
-        # exit(0)
+        print compare(dataset1, dataset2, dataset3)
+
     elif command == "visualize":
         with open(sys.argv[2]) as fp:
             dataset = json.load(fp)
             kps = get_simple_key_presses(dataset)
             visualize(kps)
-            exit(0)
+
     else:
         print BASIC_CONSOLE_TEMPLATE.format(sys.argv[0])
         exit(1)
 
+    exit(0)
+
 
 if __name__ == '__main__':
-    import timeit
-    print(timeit.repeat("run()", setup="from __main__ import run", number=1))
-    #run()
+    run()
 

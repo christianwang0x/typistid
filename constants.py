@@ -7,7 +7,8 @@ T = 0
 K = 1
 D = 2
 
-KEYS_T = (('tab', 9),
+KEYS_T = (('backspace', 8),
+          ('tab', 9),
           ('enter', 13),
           ('shift', 16),
           ('ctrl', 17),
@@ -118,4 +119,5 @@ KEYPRESS_TEMPLATE = ("code: {code}\nkey: {key}\nstart_index: {start_index}\n"
 BASIC_CONSOLE_TEMPLATE = "Usage: {0} compare file1 file2 file3 or\n" \
                          "       {0} visualize data.json"
 
-AUTHOR_TEMPLATE = "Author of {0} is same as author of {1}."
+RESULT_TEMPLATE = "{1} had a greater similarity than {3} to {0} ({2} vs. {4})\n"
+                   
