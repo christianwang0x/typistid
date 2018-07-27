@@ -7,8 +7,8 @@ To record keystroke data:
   3. Copy the printed JSON data into a file
 
 To compare keystrokes to two existing data files:<br>
-  Example usage: <code>python profiler.py compare data1.json data2.json new_data.json</code>
+    Example usage: <code>python profiler.py compare data1.json data2.json new_data.json</code>
   
 To visualize data:<br>
-  Example usage: <code>python profiler.py visualize my_keystroke_data.json</code><br>
-  Example output: ![alt text](https://raw.githubusercontent.com/christianwang0x/typistid/master/keys.png)
+    Example usage: <code>python profiler.py visualize my_keystroke_data.json</code><br>
+    Example output: ![alt text](https://raw.githubusercontent.com/christianwang0x/typistid/master/keys.png)
