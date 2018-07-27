@@ -119,6 +119,11 @@ def visualize(key_presses):
     stop = np.asarray(stop_list)
     width = stop - start
     fig, ax = plt.subplots()
-    ax.barh(y=yval, width=width, left=start, height=0.3)
-    plt.gca().invert_yaxis()
+    ax.barh(y=np.arange(len(yval)), width=width, left=start, height=0.9)
+    ax.set_yticks(np.arange(len(yval)))
+    ax.set_yticklabels(yval)
+    ax.invert_yaxis()
+    plt.xlabel("Time since page opened (ms)")
+    plt.ylabel("Key pressed")
+    plt.title("Key Press - Time Visualization")
     plt.show()
